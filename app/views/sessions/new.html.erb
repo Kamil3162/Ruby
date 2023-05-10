@@ -1,0 +1,15 @@
+<h1>Sing in</h1>
+<div>
+<%= form_with url:sing_in_path do |form| %>
+    <div>
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
+    <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    </div>
+    <%= form.submit "Zaloguj" %>
+<% end %>
+</div>
+

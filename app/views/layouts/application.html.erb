@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OnlineSHop</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "base" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <div class="all_components">
+    <div class="navbar">
+      <div class="opcje">
+        <ul id="menulist">
+          <% if Current.user %>
+            <li>
+              Logged in as <%= Current.user.email %>
+              <%= button_to "Logout", logout_path, method: :delete %>
+            <li>
+              <%= link_to "Shops", shops_path%>
+            <li>
+            <li>
+              <%= link_to "Card", card_path%>
+            <li>
+
+            <% else %>
+            <li>
+              <%= link_to "Sign Up", sing_in_path%>
+              <br>
+            <li>
+            <li>
+              <%= link_to "Sign IN", rejestracja_path%>
+            <li>
+          <% end %>
+          <li>
+            <%= link_to "About",home_path%>
+          </li>
+          <li>
+            <%= link_to "Home", root_path%>
+          </li>
+          <li>
+            <%= link_to "Categories", categories_path%>
+          <li>
+          <img src="/static/icon_nav.png" class="menu-icon" width="30" height="40" onclick="tooglemenu()">
+        </ul>
+
+      </div>
+    </div>
+    </div>
+    <div class="content1">
+      <%=render partial: "shared/flash" %>
+      <div class="all_data">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="stopka">
+      <p class="copyrights">
+        All right reserved ©.
+        Owner of this website is Kamil Hołub.
+      </p>
+      <p class="social_media">
+        Naura
+      </p>
+    </div>
+  </div>
+
+  </body>
+</html>

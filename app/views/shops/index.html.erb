@@ -1,0 +1,60 @@
+<%# views/products/index.html.erb %>
+<p style="color: green"><%= notice %></p>
+<style>
+  #products{
+      background-color: #55565c;
+      border-radius: 15px;
+  }
+  #add input[type="submit"] {
+      background-color: #556055; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+  }
+  .ramka p{
+      font-family: "Fira Code";
+      list-style-type: none;
+      float: left;
+      margin: 20px 40px;
+      border-radius: 15%;
+      transition: 0.5s;
+      font-size: 20px;
+      text-align: center;
+      width: 110px;
+      height: 40px;
+      padding: 5px;
+      display: block;
+  }
+  #links a{
+      text-decoration: underline;
+  }
+</style>
+<h1>Products</h1>
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", shop_path(product) %>
+    </p>
+    <tr id="tabelka">
+      <td class="ramka">
+        <%= form_for @order_item do |f| %>
+          <p><%= f.hidden_field :product_id,:value=> product.id%></p>
+          <p><%= f.number_field :quantity, :value=> 1, :min => 1%></p>
+          <p id="add"><%= f.submit "Add to card"%></p>
+           <% end %>
+          </td>
+          </tr>
+  <% end %>
+
+</div>
+<p id="links"><%= link_to "New product", new_product_path %></p>
+<br>
+<%= link_to "Wartosc productow w koszyku #{current_order.subtotal}", card_path%>
