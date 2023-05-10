@@ -1,0 +1,11 @@
+<h1>Tags#index</h1>
+<p>Find me in app/views/tags/index.html.erb</p>
+<h1>Tags</h1>
+
+<ul>
+  <% @tags.each do |tag| %>
+    <li><%= link_to tag.name, product_tag_path(tag) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New Tag", new_product_tag_path %>

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'tags/index'
+  get 'tags/show'
+  get 'tags/new'
+  get 'tags/destroy'
+  resources :tags
+  resources :products do
+    resources :tags
+  end
   resources :categories
   resources :products
   resources :shops, only:[:index, :show]
